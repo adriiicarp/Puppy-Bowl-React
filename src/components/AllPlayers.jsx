@@ -8,7 +8,7 @@ export default function AllPlayers() {
   useEffect(() =>{
     async function getAllPlayers(){
       const APIResponse = await fetchAllPlayers();
-        if (APIResponse.succes) {
+        if (APIResponse.success) {
           setPlayers(APIResponse.data.players);
         } else {
           setError(APIResponse.error.message);
@@ -20,6 +20,19 @@ export default function AllPlayers() {
 console.log("Players: ", players);
 console.log("Error in component", error);
 
-  return <div>AllPlayers</div>;
+const playersToDisplay = players.map((player) => {
+  return (
+    <div key={player.id}>
+      <h3>{player.name}</h3>
+    </div>
+  );
+});
+
+  return (
+    <div>
+      {error && <p>{error}</p>}
+      {playersToDisplay}
+    </div>
+  );
 }
 
