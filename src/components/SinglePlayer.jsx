@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import { useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { fetchSinglePlayer } from "../api";
 import PlayerCard from "./PlayerCard";
@@ -15,7 +15,7 @@ export default function SinglePlayer() {
             if (APIResponse.success) {
                 setPlayer(APIResponse.data.player);
             } else {
-                setError(error.messagge);
+                setError(error.message);
             }
         }
         getSinglePlayer();
