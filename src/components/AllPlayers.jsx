@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchAllPlayers } from "../api";
+import PlayerListName from "./PlayerListName";
+import CreatePlayerForm from "./CreatePlayerForm";
 
 export default function AllPlayers() {
   const [players, setPlayers] = useState([]);
@@ -16,20 +18,14 @@ export default function AllPlayers() {
     }
     getAllPlayers();
   }, []);
-  
-console.log("Players: ", players);
-console.log("Error in component", error);
 
 const playersToDisplay = players.map((player) => {
-  return (
-    <div key={player.id}>
-      <h3>{player.name}</h3>
-    </div>
-  );
+  return <PlayerListName key={player.id} player={player} />;
 });
 
   return (
     <div>
+      <CreatePlayerForm players={players} setPlayers={setPlayers} />
       {error && <p>{error}</p>}
       {playersToDisplay}
     </div>
