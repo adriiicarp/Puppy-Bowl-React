@@ -1,12 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { deletePlayer } from "../api";
 import styles from '../css/PlayerCard.module.css';
 
 export default function PlayerCard({ player }) {
+
+    const navigate = useNavigate()
+
   async function handleDelete(){
     try {
       const result = await deletePlayer(player.id);
       console.log(result);
+      navigate("/");
     } catch (error) {
         console.error(error);
     }
