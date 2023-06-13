@@ -39,3 +39,15 @@ export async function createPlayer(name, breed){
     console.error(error);
   }
 }
+
+export async function deletePlayer(id){
+  try {
+    const response = await fetch(`${baseUrl}/players/${id}`, {
+      method: "DELETE" 
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error)
+  }
+}
